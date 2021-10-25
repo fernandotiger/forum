@@ -1,22 +1,19 @@
 package com.fernando.forum.controllers.dto;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.fernando.forum.model.Answer;
 import com.fernando.forum.model.Topic;
 
-public class TopicDto {
+public class TopicDetailDto {
 
 	private Long id;
 	private String title;
 	private String message;
 	private LocalDateTime creationDate = LocalDateTime.now();
-	private List<Answer> answerList = new ArrayList<>();
 	
-	public TopicDto(Topic topic) {
+	public TopicDetailDto(Topic topic) {
 		this.id = topic.getId();
 		this.title = topic.getTitle();
 		this.message = topic.getMessage();
@@ -36,15 +33,7 @@ public class TopicDto {
 		return creationDate;
 	}
 	
-	public static List<TopicDto> convert(List<Topic> topics){
-		return topics.stream().map(TopicDto::new).collect(Collectors.toList());
-	}
-
-	public List<Answer> getAnswerList() {
-		return answerList;
-	}
-
-	public void setAnswerList(List<Answer> answerList) {
-		this.answerList = answerList;
+	public static List<TopicDetailDto> convert(List<Topic> topics){
+		return topics.stream().map(TopicDetailDto::new).collect(Collectors.toList());
 	}
 }
